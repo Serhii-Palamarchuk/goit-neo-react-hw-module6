@@ -43,7 +43,11 @@ export default function ContactForm() {
         type="tel"
         value={number}
         placeholder="Phone"
-        onChange={(e) => setNumber(e.target.value)}
+        pattern="[\d\-]+"
+        onChange={(e) => {
+          const onlyDigits = e.target.value.replace(/[^\d\-]/g, "");
+          setNumber(onlyDigits);
+        }}
         required
       />
       <button className={styles.button} type="submit">
